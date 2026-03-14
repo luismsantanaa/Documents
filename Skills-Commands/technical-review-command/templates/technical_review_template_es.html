@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte de Revisión Técnica - {{project_name}}</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #121212;
+        color: #e6e6e6;
+        line-height: 1.6;
+        padding: 24px;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        background: #1d1d1d;
+        border-radius: 12px;
+        padding: 32px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      }
+      h1 {
+        color: #4da3ff;
+        border-bottom: 3px solid #4da3ff;
+        padding-bottom: 12px;
+        margin-bottom: 28px;
+        font-size: 2.4em;
+      }
+      h2 {
+        color: #73b8ff;
+        margin-top: 38px;
+        margin-bottom: 18px;
+        padding-left: 14px;
+        border-left: 4px solid #73b8ff;
+        font-size: 1.7em;
+      }
+      h3 {
+        color: #9bcbff;
+        margin-top: 24px;
+        margin-bottom: 12px;
+        font-size: 1.28em;
+      }
+      .summary-box {
+        background: #272727;
+        border-left: 5px solid #4da3ff;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 14px;
+        margin: 20px 0;
+      }
+      .metric {
+        background: #252525;
+        border: 1px solid #3a3a3a;
+        border-radius: 8px;
+        padding: 16px;
+      }
+      .metric-value {
+        font-size: 2em;
+        font-weight: bold;
+        color: #4da3ff;
+      }
+      .metric-label {
+        color: #b5b5b5;
+        font-size: 0.92em;
+        margin-top: 6px;
+      }
+      .metric-sub {
+        color: #8f8f8f;
+        font-size: 0.82em;
+        margin-top: 4px;
+      }
+      .status-good, .good { color: #28a745; font-weight: bold; }
+      .status-warning, .warning { color: #ffc107; font-weight: bold; }
+      .status-critical, .critical { color: #dc3545; font-weight: bold; }
+      .neutral { color: #73b8ff; font-weight: bold; }
+      .finding {
+        padding: 16px;
+        margin: 16px 0;
+        border-radius: 8px;
+        border-left: 4px solid #555;
+        background: #222;
+      }
+      .severity-critical { background: #34181c; border-left-color: #dc3545; }
+      .severity-high { background: #3a1d22; border-left-color: #dc3545; }
+      .severity-medium { background: #3a3118; border-left-color: #ffc107; }
+      .severity-low { background: #183122; border-left-color: #28a745; }
+      .severity-positive { background: #183122; border-left-color: #28a745; }
+      .recommendation {
+        background: #1d3022;
+        border-left: 4px solid #28a745;
+        padding: 14px;
+        margin-top: 12px;
+        border-radius: 6px;
+      }
+      pre, code {
+        font-family: Consolas, Monaco, monospace;
+      }
+      pre {
+        background: #111;
+        border: 1px solid #3f3f3f;
+        border-radius: 6px;
+        padding: 14px;
+        overflow-x: auto;
+        margin: 14px 0;
+        color: #d9d9d9;
+        white-space: pre-wrap;
+      }
+      .file-path {
+        color: #9cdcfe;
+        font-weight: bold;
+        font-family: Consolas, Monaco, monospace;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: #222;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #3a3a3a;
+        vertical-align: top;
+      }
+      th {
+        background: #2b2b2b;
+        color: #73b8ff;
+      }
+      .badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.82em;
+        font-weight: bold;
+      }
+      .badge-critical, .badge-high { background: #dc3545; color: #fff; }
+      .badge-medium { background: #ffc107; color: #111; }
+      .badge-low { background: #28a745; color: #fff; }
+      .badge-positive { background: #28a745; color: #fff; }
+      .traffic-light {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+      .green { background: #28a745; box-shadow: 0 0 10px #28a745; }
+      .yellow { background: #ffc107; box-shadow: 0 0 10px #ffc107; }
+      .red { background: #dc3545; box-shadow: 0 0 10px #dc3545; }
+      .section-divider {
+        height: 2px;
+        background: linear-gradient(to right, #4da3ff, transparent);
+        margin: 30px 0;
+      }
+      ul, ol { margin: 10px 0 0 24px; }
+      li { margin: 8px 0; }
+      .footer {
+        margin-top: 42px;
+        padding-top: 18px;
+        border-top: 1px solid #3a3a3a;
+        text-align: center;
+        color: #909090;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔍 Reporte de Revisión Técnica</h1>
+      <h2>{{project_name}}</h2>
+
+      <div class="summary-box">
+        <p><strong>Fecha de revisión:</strong> {{review_date}}</p>
+        <p><strong>Stack detectado:</strong> {{technology_stack}}</p>
+        <p><strong>Arquitectura detectada:</strong> {{architecture_style}}</p>
+        <p><strong>Alcance de la revisión:</strong> {{review_scope}}</p>
+      </div>
+
+      <h2>📌 Resumen Ejecutivo</h2>
+      <div class="summary-box">
+        <p><span class="traffic-light {{traffic_light_color}}"></span><span class="{{global_status_class}}">{{global_status_label}}</span></p>
+        <p style="margin-top:14px;"><strong>Puntuación general:</strong> {{overall_score}}/100</p>
+        <p style="margin-top:14px;">{{executive_summary}}</p>
+      </div>
+
+      <h2>📊 Tarjeta de Puntuación</h2>
+      <div class="grid">
+        <div class="metric"><div class="metric-value">{{score_architecture}}</div><div class="metric-label">Arquitectura</div></div>
+        <div class="metric"><div class="metric-value">{{score_code_quality}}</div><div class="metric-label">Calidad de código</div></div>
+        <div class="metric"><div class="metric-value">{{score_complexity}}</div><div class="metric-label">Complejidad del código</div><div class="metric-sub">Señales de complejidad ciclomática, anidamiento, tamaño y mantenibilidad</div></div>
+        <div class="metric"><div class="metric-value">{{score_security}}</div><div class="metric-label">Seguridad</div></div>
+        <div class="metric"><div class="metric-value">{{score_data_performance}}</div><div class="metric-label">Datos y rendimiento</div></div>
+        <div class="metric"><div class="metric-value">{{score_api_maintainability}}</div><div class="metric-label">API y mantenibilidad</div></div>
+        <div class="metric"><div class="metric-value">{{score_testing}}</div><div class="metric-label">Pruebas y validación</div></div>
+        <div class="metric"><div class="metric-value">{{overall_score}}</div><div class="metric-label">General</div></div>
+      </div>
+
+      <h2>🧠 Análisis de Complejidad</h2>
+      <div class="summary-box">
+        <p><strong>Evaluación general de complejidad:</strong> {{complexity_summary}}</p>
+        <ul>
+          <li><strong>Hotspots estimados:</strong> {{complexity_hotspots}}</li>
+          <li><strong>Métodos largos / clases grandes:</strong> {{complexity_long_units}}</li>
+          <li><strong>Complejidad condicional:</strong> {{complexity_conditionals}}</li>
+          <li><strong>Riesgo por anidamiento:</strong> {{complexity_nesting}}</li>
+          <li><strong>Riesgo de mantenibilidad:</strong> {{complexity_maintainability}}</li>
+        </ul>
+      </div>
+
+      <h2>✅ Fortalezas Detectadas</h2>
+      {{strengths_html}}
+
+      <h2>🚨 Hallazgos Clave y Recomendaciones</h2>
+      {{findings_grouped_html}}
+
+      <h2>🏗️ Análisis de Arquitectura y Capas</h2>
+      <div class="summary-box">
+        <p><strong>Separación de capas:</strong> {{layer_separation_assessment}}</p>
+        <p><strong>Dirección de dependencias:</strong> {{dependency_direction_assessment}}</p>
+        <p><strong>SOLID / Clean Code:</strong> {{solid_clean_code_assessment}}</p>
+        <p><strong>Lógica de negocio en controladores / endpoints:</strong> {{business_logic_in_controllers}}</p>
+        <p><strong>Observaciones de CQRS / MediatR:</strong> {{cqrs_mediatr_notes}}</p>
+      </div>
+
+      <h2>🔒 Revisión de Seguridad</h2>
+      {{security_review_html}}
+
+      <h2>🗄️ Revisión de Acceso a Datos y Rendimiento</h2>
+      {{data_performance_review_html}}
+
+      <h2>📋 Duplicación de Código / Código Innecesario</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Archivo / componente</th>
+            <th>Evidencia</th>
+            <th>Problema</th>
+            <th>Acción recomendada</th>
+            <th>Severidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{duplication_table_rows}}
+        </tbody>
+      </table>
+
+      <h2>📐 Buenas Prácticas Faltantes</h2>
+      {{missing_best_practices_html}}
+
+      <h2>🔧 Principales Oportunidades de Refactorización</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Prioridad</th>
+            <th>Oportunidad</th>
+            <th>Refactorización sugerida</th>
+            <th>Beneficio esperado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{refactoring_rows}}
+        </tbody>
+      </table>
+
+      <h2>🗺️ Plan de Acción</h2>
+      <div class="summary-box">
+        <h3>Inmediato</h3>
+        {{action_plan_immediate}}
+        <h3>Corto plazo</h3>
+        {{action_plan_short_term}}
+        <h3>Mediano plazo</h3>
+        {{action_plan_medium_term}}
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h2>🎯 Conclusión Final</h2>
+      <div class="summary-box">
+        <p><span class="traffic-light {{traffic_light_color}}"></span><span class="{{global_status_class}}">{{global_status_label}}</span></p>
+        <p style="margin-top:14px;">{{final_conclusion}}</p>
+      </div>
+
+      <div class="footer">
+        <p>Generado el {{review_date}}</p>
+        <p>{{project_name}} - Reporte de Revisión Técnica</p>
+      </div>
+    </div>
+  </body>
+</html>
