@@ -1,0 +1,223 @@
+================================================================================
+EXTRACCION COMPLETA DEL HARNESS ENGINEERING
+================================================================================
+
+PROYECTO: harness-sdd (Ejemplo de Implementación del Harness)
+OBJETIVO: Extraer y documentar TODOS los componentes, archivos, flujos y 
+          patrones necesarios para implementar un Harness que permita a 
+          agentes de IA trabajar de forma autónoma y verificable.
+
+================================================================================
+DOCUMENTOS GENERADOS (6 archivos, 3400+ líneas)
+================================================================================
+
+1. 00_COMIENZA_AQUI.md
+   └─ Introducción y guía de navegación
+   └─ Lenguaje: Accesible
+   └─ Tiempo: 5 minutos
+   └─ Para: Todos (empieza aquí)
+
+2. RESUMEN_EXTRACCION_FINAL.md  [LEER PRIMERO]
+   └─ Resumen ejecutivo de toda la extracción
+   └─ Los 4 pilares, archivos requeridos, flujos, roles
+   └─ Lenguaje: Ejecutivo
+   └─ Tiempo: 10 minutos
+   └─ Para: Todos
+
+3. RESUMEN_HARNESS_VISUAL.md  [LEER SEGUNDO]
+   └─ Resumen visual con diagramas ASCII
+   └─ Estructura, flujos, ejemplos, checklist
+   └─ Lenguaje: Visual + código
+   └─ Tiempo: 15 minutos
+   └─ Para: Todos
+
+4. REFERENCIAS_RAPIDAS_POR_ROL.md  [CONSULTA POR ROL]
+   └─ Checklists específicas por cada rol (Leader, Spec Author, Implementer, Reviewer)
+   └─ Qué hacer en cada momento, reglas, tablas
+   └─ Lenguaje: Imperativo/Checklist
+   └─ Tiempo: Consulta según necesidad
+   └─ Para: Cada agente/rol específico
+
+5. IMPLEMENTACION_HARNESS.md  [REFERENCIA TECNICA]
+   └─ Guía técnica exhaustiva y completa (1200+ líneas)
+   └─ Explicación detallada de CADA archivo necesario
+   └─ Flujos completos paso a paso, ejemplos, protocolos
+   └─ Lenguaje: Técnico/Formal
+   └─ Tiempo: 60 minutos para lectura completa
+   └─ Para: Arquitectos, implementadores técnicos
+
+6. INDICE_DOCUMENTOS.md  [NAVEGACION]
+   └─ Índice maestro y mapa de navegación
+   └─ Búsqueda rápida por tema, referencias cruzadas
+   └─ Lenguaje: Referencia
+   └─ Tiempo: Consulta
+   └─ Para: Navegar entre documentos
+
+================================================================================
+CONTENIDO EXTRAÍDO
+================================================================================
+
+✅ Los 4 Pilares del Harness
+   └─ Repositorio = Sistema
+   └─ Orquestación Multi-Agente
+   └─ Spec Driven Development (SDD)
+   └─ Supervisión Ejecutable
+
+✅ Los 4 Agentes
+   └─ Leader (Orquestador)
+   └─ Spec Author (Diseñador)
+   └─ Implementer (Constructor)
+   └─ Reviewer (Inspector)
+
+✅ 16 Archivos Obligatorios
+   └─ 4 archivos base (CLAUDE.md, AGENTS.md, feature_list.json, init.sh)
+   └─ 4 documentos (docs/architecture.md, conventions, specs, verification)
+   └─ 5 archivos de agentes (.claude/agents/*.md + settings.json)
+   └─ 2 archivos de estado (progress/current.md, history.md)
+   └─ 1 archivo de criterios (CHECKPOINTS.md)
+
+✅ El Flujo SDD Completo
+   └─ pending → spec_ready → in_progress → done
+   └─ Con puerta de aprobación humana entre spec_ready e in_progress
+
+✅ EARS Notation (Especificaciones)
+   └─ 5 patrones: Ubicuo, Evento, Estado, Opcional, No deseado
+   └─ 3 archivos por feature: requirements, design, tasks
+
+✅ Los 6 Checkpoints
+   └─ C1: Arnés completo
+   └─ C2: Estado coherente
+   └─ C3: Código sano
+   └─ C4: Verificación real
+   └─ C5: Sesión cerrada
+   └─ C6: SDD cumplido
+
+✅ Trazabilidad Obligatoria
+   └─ R<n> (requirements) ↔ test (verificación)
+   └─ Cada R<n> debe tener al menos 1 test
+
+✅ Reglas Duras (No Negociables)
+   └─ Por cada rol (Leader, Spec Author, Implementer, Reviewer)
+   └─ Prohibiciones explícitas y acciones obligatorias
+
+✅ El Script init.sh
+   └─ Verificación ejecutable (Python 3, archivos base, specs, tests)
+   └─ Salida clara: [OK] o [FAIL]
+
+✅ Ejemplos Reales (Ficticios pero Funcionales)
+   └─ Flujo completo de un feature de CLI
+   └─ Redacción de requirements en EARS
+   └─ Implementación y verificación
+
+================================================================================
+ESTADISTICAS
+================================================================================
+
+Documentos generados:     6
+Líneas totales:           3400+
+Tamaño total:            85 KB
+
+Desglose por documento:
+  - 00_COMIENZA_AQUI.md                    ~250 líneas
+  - RESUMEN_EXTRACCION_FINAL.md            ~350 líneas
+  - RESUMEN_HARNESS_VISUAL.md              ~600 líneas
+  - REFERENCIAS_RAPIDAS_POR_ROL.md         ~600 líneas
+  - IMPLEMENTACION_HARNESS.md              ~1200 líneas
+  - INDICE_DOCUMENTOS.md                   ~400 líneas
+
+Tiempo de lectura recomendada:
+  - Rápida (visión general):              30 minutos
+  - Estándar (aprender):                  2 horas
+  - Completa (implementar):               3-4 horas
+
+================================================================================
+CÓMO USAR ESTA DOCUMENTACION
+================================================================================
+
+OPCION 1: Entendimiento Rápido (30 min)
+  1. Lee: 00_COMIENZA_AQUI.md (5 min)
+  2. Lee: RESUMEN_EXTRACCION_FINAL.md (10 min)
+  3. Lee: RESUMEN_HARNESS_VISUAL.md (15 min)
+
+OPCION 2: Aprendizaje Completo (2 horas)
+  1. Lee: 00_COMIENZA_AQUI.md (5 min)
+  2. Lee: RESUMEN_HARNESS_VISUAL.md (20 min)
+  3. Lee: REFERENCIAS_RAPIDAS_POR_ROL.md (20 min)
+  4. Lee: IMPLEMENTACION_HARNESS.md (60 min)
+  5. Consulta: INDICE_DOCUMENTOS.md (según necesidad)
+
+OPCION 3: Implementación (3-4 horas)
+  1. Lee toda la documentación anterior (2 horas)
+  2. Sigue: Checklist de Implementación en IMPLEMENTACION_HARNESS.md
+  3. Adapta: docs/ y features a tu proyecto
+  4. Verifica: ./init.sh debe pasar
+
+OPCION 4: Referencia Rápida (5 min)
+  → Abre: REFERENCIAS_RAPIDAS_POR_ROL.md
+  → Busca: Tu rol
+  → Sigue: El checklist
+
+================================================================================
+ARCHIVOS YA PRESENTES EN EL PROYECTO
+================================================================================
+
+Estos archivos ya estaban en el proyecto y fueron ANALIZADOS:
+
+Core (Fuerza el arnés):
+  ✓ CLAUDE.md                   # Fuerza rol leader
+  ✓ AGENTS.md                   # Mapa de navegación
+  ✓ feature_list.json           # Alcance
+  ✓ init.sh                      # Verificación
+  ✓ CHECKPOINTS.md              # Criterios
+
+Documentación (Define estándares):
+  ✓ docs/architecture.md        # Qué es "buen trabajo"
+  ✓ docs/conventions.md         # Estilo
+  ✓ docs/specs.md              # Cómo hacer specs
+  ✓ docs/verification.md       # Cómo verificar
+
+Agentes (Roles especializados):
+  ✓ .claude/agents/leader.md
+  ✓ .claude/agents/spec_author.md
+  ✓ .claude/agents/implementer.md
+  ✓ .claude/agents/reviewer.md
+  ✓ .claude/settings.json
+
+Estado (Persistencia):
+  ✓ progress/current.md        # Estado vivo
+  ✓ progress/history.md        # Bitácora
+
+Otros:
+  ✓ README.md                   # Guía original
+
+================================================================================
+NUEVOS DOCUMENTOS GENERADOS
+================================================================================
+
+Estos archivos fueron GENERADOS en esta sesión:
+
+Guías de aprendizaje:
+  ✨ 00_COMIENZA_AQUI.md                    # Introducción
+  ✨ RESUMEN_EXTRACCION_FINAL.md            # Resumen ejecutivo
+  ✨ RESUMEN_HARNESS_VISUAL.md              # Resumen visual
+  ✨ REFERENCIAS_RAPIDAS_POR_ROL.md         # Checklists por rol
+  ✨ IMPLEMENTACION_HARNESS.md              # Referencia técnica
+  ✨ INDICE_DOCUMENTOS.md                   # Navegación
+
+================================================================================
+PROXIMO PASO
+================================================================================
+
+👉 Abre y lee este archivo primero:
+
+   00_COMIENZA_AQUI.md
+
+Luego continúa con:
+
+   1. RESUMEN_EXTRACCION_FINAL.md (10 min)
+   2. RESUMEN_HARNESS_VISUAL.md (15 min)
+   3. REFERENCIAS_RAPIDAS_POR_ROL.md (según tu rol)
+
+================================================================================
+CONCLUSIÓN
+=================================================================
